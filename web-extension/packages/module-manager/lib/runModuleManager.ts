@@ -32,12 +32,12 @@ async function runModuleManager() {
   const updatedManifest = manifestString
     .replace(
       /const manifest = {[\s\S]*?} satisfies/,
-      'const manifest = ' + JSON.stringify(manifestObject, null, 2) + ' satisfies',
+      `const manifest = ${JSON.stringify(manifestObject, null, 2)} satisfies`,
     )
     .replace(/ {2}"version": "[\s\S]*?",/, '  version: packageJson.version,');
 
   fs.writeFileSync(manifestPath, updatedManifest);
-  execSync('eslint --fix ' + manifestPath, { stdio: 'inherit' });
+  execSync(`eslint --fix ${manifestPath}`, { stdio: 'inherit' });
   await new Promise(resolve => {
     setTimeout(resolve, 1500);
   });

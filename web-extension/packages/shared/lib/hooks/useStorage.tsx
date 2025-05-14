@@ -22,7 +22,7 @@ export const useStorage = <
     initializedRef.current = true;
   }
 
-  return (_data ?? storageMap.get(storage)!.read()) as Exclude<Data, PromiseLike<unknown>>;
+  return (_data ?? storageMap.get(storage)?.read()) as Exclude<Data, PromiseLike<unknown>>;
 };
 
 const wrapPromise = <R,>(promise: Promise<R>) => {

@@ -21,7 +21,7 @@ const Popup = () => {
   const injectContentScript = async () => {
     const [tab] = await chrome.tabs.query({ currentWindow: true, active: true });
 
-    if (tab.url!.startsWith('about:') || tab.url!.startsWith('chrome:')) {
+    if (tab.url?.startsWith('about:') || tab.url?.startsWith('chrome:')) {
       chrome.notifications.create('inject-error', notificationOptions);
     }
 
